@@ -1,0 +1,57 @@
+<!-- templates/search.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Photos</h2>
+<hr>
+<!-- A search form -->
+<form method="get" action="{{ url_for('search') }}">
+  <div class="form-group">
+    <label for="searchInput">Search by Title:</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      name="q" 
+      id="searchInput" 
+      placeholder="e.g. Vacation"
+      value="{{ query }}"
+    >
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+{% if query %}
+  <hr>
+  <p>Results for <strong>{{ query }}</strong>:</p>
+  {% if results %}
+    <div class="row">
+      {% for photo in results %}
+        <div class="col-md-3 text-center mb-4">
+          <img 
+            src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" 
+            class="img-thumbnail" 
+            alt="{{ photo.title }}"
+            style="max-width: 100%; max-height: 200px;"
+          >
+          <p><strong>{{ photo.title }}</strong></p>
+
+          <div>
+            <a href="{{ url_for('download', photo_id=photo.id) }}" class="btn btn-sm btn-outline-primary">
+              Download
+            </a>
+            <a href="{{ url_for('edit_photo', photo_id=photo.id) }}" class="btn btn-sm btn-outline-secondary">
+              Edit
+            </a>
+            <a href="{{ url_for('delete_photo', photo_id=photo.id) }}" class="btn btn-sm btn-outline-danger">
+              Delete
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No photos found matching "{{ query }}".</p>
+  {% endif %}
+{% else %}
+  <p>Enter a term above to search for your photos.</p>
+{% endif %}
+{% endblock %}

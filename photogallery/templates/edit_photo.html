@@ -1,0 +1,20 @@
+<!-- templates/edit_photo.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Photo</h2>
+<hr>
+<form method="POST" action="{{ url_for('edit_photo', photo_id=photo.id) }}">
+  <div class="form-group">
+    <label for="title">New Title:</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      name="title" 
+      id="title" 
+      value="{{ photo.title }}"
+    >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+{% endblock %}
