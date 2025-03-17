@@ -27,7 +27,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 DB_HOST = "35.225.73.193"       # Your Cloud SQL Public IP
 DB_USER = "root"                # Your DB username
 DB_PASSWORD = "se4220"          # Your DB password
-DB_NAME = "photo-gallery-db"    # Make sure this matches your DB name exactly
+DB_NAME = "photogallery"    # Make sure this matches your DB name exactly
 
 ##############################################################################
 # DATABASE CONNECTION HELPERS
